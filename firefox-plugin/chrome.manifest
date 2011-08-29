@@ -1,0 +1,4 @@
+content	polopolyedit	content/
+overlay	chrome://browser/content/browser.xul	chrome://polopolyedit/content/script-compiler-overlay.xul
+
+locale	polopolyedit	en-US	locale/en-US/
