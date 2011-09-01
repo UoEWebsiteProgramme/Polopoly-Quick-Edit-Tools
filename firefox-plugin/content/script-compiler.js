@@ -60,6 +60,17 @@ contentLoad: function(e) {
 		);
 		polopolyedit_gmCompiler.injectScript(script, href, unsafeWin);
 	}
+	
+	if (
+		polopolyedit_gmCompiler.isGreasemonkeyable(href)
+		&& ( /^https:\/\/www\.polopoly\.mis\.ed\.ac\.uk\/polopoly.*$/.test(href) )
+		&& true
+	) {
+		var script=polopolyedit_gmCompiler.getUrlContents(
+			'chrome://polopolyedit/content/polopolyui.js'
+		);
+		polopolyedit_gmCompiler.injectScript(script, href, unsafeWin);
+	}
 },
 
 injectScript: function(script, url, unsafeContentWin) {
