@@ -29,7 +29,7 @@ if (sessionmeta) {
 	if (policywidget[0]) {
 		var section = policywidget[0].getAttribute("polopoly:name");
 	}
-	gaTrack('UA-3415584-4','ed.ac.uk','/polopoly/backend/' + state + '/' + id + '/' + policywidget);
+	gaTrack('UA-3415584-4','ed.ac.uk','/polopoly/backend/' + state + '/' + id + '?tab=' + section);
 	//alert('/polopoly/backend/' + state + '/' + id + '/' + section);
 } 
 
