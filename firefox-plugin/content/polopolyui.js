@@ -13,7 +13,11 @@
 
 // http://www.apache.org/licenses/LICENSE-2.0
 
-function gaTrack(g,h,i){function c(e,j){return e+Math.floor(Math.random()*(j-e))}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n}
+// extensions 
+// z1 = page title
+// z2 = medium
+
+function gaTrack(g,h,i,z1,z2){function c(e,j){return e+Math.floor(Math.random()*(j-e))}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utm_medium='+z2+'&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt='+z1+'&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n}
 
 
 var s = window.location.href; //get the address URL
@@ -22,15 +26,42 @@ var sessionmeta = document.getElementById("sessionmeta");
 
 if (sessionmeta) {
 	var id = sessionmeta.getAttribute("polopoly:contentid");
+	id = id.substr(0, id.lastIndexOf('.')) || id;
 	var state = sessionmeta.getAttribute("polopoly:statename");
-
+	
+	userid = s.replace('https://www.polopoly.mis.ed.ac.uk/polopoly/CM?owid=','');
+	userid = userid.substr(0, userid.indexOf('&')) || userid;
+	
 	var policywidget = document.getElementsByTagName("polopoly:policywidget");
-
+	
+	// TODO page title
+	//var pagetitle = document.getElementsByClassName("title").h1.innerHTML; // /html/body/form/div[3]/div/h1
+	//alert(pagetitle);
+	
 	if (policywidget[0]) {
 		var section = policywidget[0].getAttribute("polopoly:name");
+		section = section.replace('menu/webproxy/contentMetadataInWebproxy','webproxy');
+		section = section.replace('menu/metadata/contentMetadataInMetadata','properties');
+		section = section.replace('pageMenu/metadata/contentMetadataInMetadata','properties');
+		section = section.replace('menu/reference/contentMetadataInReference','references');
+		section = section.replace('menu/superplus/contentMetadataInSuperplus','super-plus');
+		section = section.replace('menu/rss/contentMetadataInRss','rssbox');
+		section = section.replace('menu/primary/contentMetadataInPrimary','middle-row');
+		section = section.replace('menu/secondary/contentMetadataInSecondary','bottom-row');
+		section = section.replace('menu/quicklinks/contentMetadataInQuickLinks','quicklinks');
+		section = section.replace('system/name','system-settings');
+		section = section.replace('menu/text/contentMetadataInText','integration-article');
+		section = section.replace('pageMenu/formPage/contentMetadataInFormPage','form');
+		section = section.replace('LoginName','user');
+		if (id.indexOf("2.") !== -1 && section !== 'system-settings') {
+			section = 'section';
+		}
+		
+		var pagetitle = id;
+			
 	}
-	gaTrack('UA-3415584-4','ed.ac.uk','/polopoly/backend/' + state + '/' + id + '?tab=' + section);
-	//alert('/polopoly/backend/' + state + '/' + id + '/' + section);
+	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section, pagetitle, userid);
+	//alert('www.polopoly.mis.ed.ac.uk/' + id + '/' + state + '?tab=' + section + '?user=' + userid)
 } 
 
 /*
@@ -45,5 +76,8 @@ menu/primary/contentMetadataInPrimary = middle row
 menu/secondary/contentMetadataInSecondary = bottom row
 menu/quicklinks/contentMetadataInQuickLinks = quicklinks
 system/name = section
+menu/text/contentMetadataInText = special HTML article
+pageMenu/formPage/contentMetadataInFormPage = Form
+LoginName = user
 
 */
