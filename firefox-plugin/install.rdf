@@ -1,6 +1,6 @@
 <?xml version="1.0"?><RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#"><Description about="urn:mozilla:install-manifest"><em:id>{57e7953d-6397-41d1-b8fd-996a4725c2ab}</em:id>
 <em:name>Polopoly Article Edit</em:name>
-<em:version>1.2</em:version>
+<em:version>1.3b</em:version>
 <em:type>2</em:type>
 <em:description>Adds an edit button to every article on the Polopoly live website. Simply browse and click to edit your Polopoly articles. You must have the relevant permissions to edit the content.</em:description>
 <em:creator>The University of Edinburgh</em:creator>

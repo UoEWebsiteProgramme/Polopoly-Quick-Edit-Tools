@@ -43,8 +43,6 @@ function gaTrack(urchinCode, domain, url, userid) {
 			
 	//get the cookie data
 	var cookie_utma = getCookie("__utma");
-	alert(userid);
-	alert(cookie_utma);
 	if (cookie_utma != null && cookie_utma != "" && cookie_utma != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
 		// the cookie has been set
 		cookie_utma = cookie_utma + '.' + today // set utma cookie
