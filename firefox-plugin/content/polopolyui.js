@@ -58,7 +58,7 @@ function gaTrack(urchinCode, domain, url, userid) {
 	var cookie_utmb = getCookie("__utmb");
 	var dt = new Date(), expiryTime = dt.setTime( dt.getTime() + 1800000 );
 	
-	if (cookie_utmb != null && cookie_utmb != "") {
+	if (cookie_utmb != null && cookie_utmb != "" && cookie_utmb != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
 		// the cookie has been set
 		cookie_utmb = cookie_utmb.split('.',3)
 		cookie_utmb_userid = cookie_utmb[0];
