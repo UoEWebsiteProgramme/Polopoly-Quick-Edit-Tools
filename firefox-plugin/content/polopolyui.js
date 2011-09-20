@@ -17,8 +17,111 @@
 // z1 = page title
 // z2 = medium
 
-function gaTrack(g,h,i,z1,z2){function c(e,j){return e+Math.floor(Math.random()*(j-e))}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utm_medium='+z2+'&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt='+z1+'&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n}
 
+/**
+ * Google Analytics JS v1
+ * http://code.google.com/p/google-analytics-js/
+ * Copyright (c) 2009 Remy Sharp remysharp.com / MIT License
+ * $Date: 2009-02-25 14:25:01 +0000 (Wed, 25 Feb 2009) $
+ * modified - Joseph Farthing, 2011
+ */
+function gaTrack(urchinCode, domain, url, userid) {
+
+	function rand(min, max) {
+		return min + Math.floor(Math.random() * (max - min));
+	}
+
+	//var userid = getCookie("userId");
+	
+	var i=1000000000,
+			utmn=rand(i,9999999999), //random request number
+			cookie=userid, //user id
+			random=rand(i,2147483647), //number under 2147483647
+			today=(new Date()).getTime(),
+			win = window.location,
+			img = new Image();
+			
+	//get the cookie data
+	var cookie_utma = getCookie("__utma");
+	alert(userid);
+	alert(cookie_utma);
+	if (cookie_utma != null && cookie_utma != "" && cookie_utma != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
+		// the cookie has been set
+		cookie_utma = cookie_utma + '.' + today // set utma cookie
+		eraseCookie("__utma");
+		setCookie("__utma",cookie_utma,1825);
+
+	} else {
+		
+		cookie_utma = userid + '.' + today // set utma cookie
+		setCookie("__utma",cookie_utma,1825);
+	}
+	
+	var cookie_utmb = getCookie("__utmb");
+	var dt = new Date(), expiryTime = dt.setTime( dt.getTime() + 1800000 );
+	
+	if (cookie_utmb != null && cookie_utmb != "") {
+		// the cookie has been set
+		cookie_utmb = cookie_utmb.split('.',3)
+		cookie_utmb_userid = cookie_utmb[0];
+		var cookie_utmb_visitno = new Number (cookie_utmb[1]);
+		cookie_utmb_visitno = cookie_utmb_visitno + 1;
+		cookie_utmb = cookie_utmb_userid + '.' + cookie_utmb_visitno + '.10.' + today // set utmb cookie
+		eraseCookie("__utmb");
+		document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
+
+	} else {
+		cookie_utmb = userid + '.1.10.' + today // set utmb cookie
+		document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
+		cookie_utmb = "";
+	}
+
+	
+	var urchinUrl = 'http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='
+		+utmn+'&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn='
+		+domain+'&utmr='+win+'&utmp='
+		+url+'&utmac='
+		+urchinCode+'&utmcc=__utma%3D'
+		+cookie_utma+'.2%3B%2B__utmb%3D' //insert __utma value
+		+cookie_utmb+'%3B%2B__utmc%3D' //insert __utmb value
+		+cookie+'%3B%2B__utmz%3D'
+		+cookie+'.'+today
+		+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D' + win.host + '%7Cutmcct%3D' + win.pathname + '%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'
+		+cookie+'.-%3B';
+
+	
+	// trigger the tracking
+	img.src = urchinUrl;
+}
+
+//function gaTrack(g,h,i,z1,z2){function c(e,j){return e+Math.floor(Math.random()*(j-e))}var f=1000000000,k=c(f,9999999999),a=c(10000000,99999999),l=c(f,2147483647),b=(new Date()).getTime(),d=window.location,m=new Image(),n='http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='+k+'&utmsr=-&utm_medium='+z2+'&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt='+z1+'&utmhn='+h+'&utmr='+d+'&utmp='+i+'&utmac='+g+'&utmcc=__utma%3D'+a+'.'+l+'.'+b+'.'+b+'.'+b+'.2%3B%2B__utmb%3D'+a+'%3B%2B__utmc%3D'+a+'%3B%2B__utmz%3D'+a+'.'+b+'.2.2.utmccn%3D(referral)%7Cutmcsr%3D'+d.host+'%7Cutmcct%3D'+d.pathname+'%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'+a+'.-%3B';m.src=n}
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+{
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+function eraseCookie(name) {
+setCookie(name, "", -1);
+}
 
 var s = window.location.href; //get the address URL
 
@@ -60,7 +163,10 @@ if (sessionmeta) {
 		var pagetitle = id;
 			
 	}
-	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section, pagetitle, userid);
+	
+
+	
+	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section, userid);
 	//alert('www.polopoly.mis.ed.ac.uk/' + id + '/' + state + '?tab=' + section + '?user=' + userid)
 } 
 
