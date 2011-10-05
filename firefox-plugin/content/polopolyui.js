@@ -42,37 +42,54 @@ function gaTrack(urchinCode, domain, url, userid) {
 			img = new Image();
 			
 	//get the cookie data
+	var cookie_utmb = getCookie("__utmb");
 	var cookie_utma = getCookie("__utma");
+	
+	var dt = new Date(), expiryTime = dt.setTime( dt.getTime() + 1800000 );
+	
 	if (cookie_utma != null && cookie_utma != "" && cookie_utma != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
-		// the cookie has been set
-		cookie_utma = cookie_utma + '.' + today // set utma cookie
-		eraseCookie("__utma");
-		setCookie("__utma",cookie_utma,1825);
+		// the  UTMA cookie has been set
+	
+		cookie_utma = cookie_utma.split('.');
+		cookie_utma_length = cookie_utma.length-1;
+		var cookie_utma_visitno = new Number (cookie_utma[cookie_utma_length]);
+		cookie_utma_visitno = cookie_utma_visitno;
+		if (cookie_utma_visitno + 1 == 'NaN' || cookie_utma_visitno > 99999) {
+			cookie_utma_visitno = 1;
+		}
+		
+			
+		if (cookie_utmb != null && cookie_utmb != "" && cookie_utmb != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
+			// the UTMB cookie has been set
+			cookie_utmb = cookie_utmb.split('.',3)
+			var cookie_utmb_visitno = new Number (cookie_utmb[1]);
+			cookie_utmb_visitno = cookie_utmb_visitno + 1;
+			cookie_utmb = cookie_utma[0] + '.' + cookie_utmb_visitno + '.10.' + today // set utmb cookie
+			eraseCookie("__utmb");
+			document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
+			cookie_utma_prev_visit = cookie_utma[cookie_utma_length-2];
+			
+		} else {
+			cookie_utmb = userid + '.1.10.' + today // set utmb cookie
+			document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
+			cookie_utmb = "";
+			cookie_utma_visitno = cookie_utma_visitno + 1;
+			cookie_utma_prev_visit = cookie_utma[cookie_utma_length-1];
+		}
+			cookie_utma = cookie_utma[0] + '.' + cookie_utma[1] + '.' + cookie_utma_prev_visit + '.' + today + '.' + cookie_utma_visitno // set utma cookie
+			alert(cookie_utma);
+			eraseCookie("__utma");
+			setCookie("__utma",cookie_utma,1825);
+
+	
 
 	} else {
 		
-		cookie_utma = userid + '.' + today // set utma cookie
+		cookie_utma = userid + '.' + today + today + '.0' // set utma cookie
 		setCookie("__utma",cookie_utma,1825);
 	}
 	
-	var cookie_utmb = getCookie("__utmb");
-	var dt = new Date(), expiryTime = dt.setTime( dt.getTime() + 1800000 );
 	
-	if (cookie_utmb != null && cookie_utmb != "" && cookie_utmb != "https://www.polopoly.mis.ed.ac.uk/polopoly/CM") {
-		// the cookie has been set
-		cookie_utmb = cookie_utmb.split('.',3)
-		cookie_utmb_userid = cookie_utmb[0];
-		var cookie_utmb_visitno = new Number (cookie_utmb[1]);
-		cookie_utmb_visitno = cookie_utmb_visitno + 1;
-		cookie_utmb = cookie_utmb_userid + '.' + cookie_utmb_visitno + '.10.' + today // set utmb cookie
-		eraseCookie("__utmb");
-		document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
-
-	} else {
-		cookie_utmb = userid + '.1.10.' + today // set utmb cookie
-		document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
-		cookie_utmb = "";
-	}
 
 	
 	var urchinUrl = 'http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='

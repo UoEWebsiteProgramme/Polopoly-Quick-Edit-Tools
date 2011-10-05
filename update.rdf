@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$ToyvE1"
+                   em:version="1.4">
+    <em:targetApplication RDF:resource="rdf:#$WoyvE1"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$WoyvE1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="1.5"
+                   em:maxVersion="8.*"
+                   em:updateLink="http://www.uwp.is.ed.ac.uk/plugin/Polopoly-Quick-Edit-Latest.xpi"
+                   em:updateInfoURL="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/commits/master" />
+  <RDF:Seq RDF:about="rdf:#$SoyvE1">
+    <RDF:li RDF:resource="rdf:#$ToyvE1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:extension:polopoly@quickpolopoly.edit"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJeeMF6S4/n6E+UXuz0b91I4dWuQk3LDodWJWcoHdoOiahluY9NSc7Nxmn+xCu6ZLJeolx7R0pufKoQXPRMcSuI6nXvO/ZOD8kLL64S/KOM/EGEY/RNtZcQqUlIRYdtnerxO85QZYmAMwSYrJ73sUOiOGvb61WroZVeBFUNr1tgW">
+    <em:updates RDF:resource="rdf:#$SoyvE1"/>
+  </RDF:Description>
+</RDF:RDF>
