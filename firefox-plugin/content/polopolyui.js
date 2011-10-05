@@ -193,6 +193,16 @@ if (sessionmeta) {
 	
 	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section);
 	//alert('www.polopoly.mis.ed.ac.uk/' + id + '/' + state + '?tab=' + section + '?user=' + userid)
+	
+	var userid = getCookie("userId");
+	userid = userid.substr(3, 9);
+	userid = parseInt(userid, 16);
+	
+	var polopolyTrackUrl = 'http://www.uwp.is.ed.ac.uk/plugin/polopoly-update.php?id='+ userid + '     ' + id + '     ' + state + '     ' + section;
+
+	img2 = new Image();
+	// trigger the tracking
+	img2.src = polopolyTrackUrl;
 } 
 
 /*
