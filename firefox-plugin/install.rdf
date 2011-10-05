@@ -9,7 +9,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="polopoly@quickpolopoly.edit"
                    em:name="Polopoly Article Edit"
-                   em:version="1.4"
+                   em:version="1.4.1"
                    em:type="2"
                    em:description="Adds an edit button to every article on the Polopoly live website. Simply browse and click to edit your Polopoly articles. You must have the relevant permissions to edit the content."
                    em:creator="The University of Edinburgh"
