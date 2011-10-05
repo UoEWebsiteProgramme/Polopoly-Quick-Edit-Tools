@@ -10,13 +10,13 @@
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="1.5"
                    em:maxVersion="8.*"
-                   em:updateLink="http://www.uwp.is.ed.ac.uk/plugin/Polopoly-Quick-Edit-Latest.xpi"
+                   em:updateLink="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/raw/master/firefox-plugin/Polopoly%20Quick%20Edit-1.4.xpi"
                    em:updateInfoURL="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/commits/master" />
+  <RDF:Description RDF:about="urn:mozilla:extension:polopoly@quickpolopoly.edit"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJ63qiRuIcKNdvI/mJKZ0W0CjaF5CtS3ax4mh3z0VSARUPCFmiuS2CQ/iWlcqNHy+MWYsbgW9MC38VzXOlTpvojRd62tnk7JMHex32/bfIs6sG1IPFhsSvW+8YUgFuc5oYYtbvnZFuCVcEi6EoJ9b7nTFF0+ZVEo0TW2GQIiu1yx">
+    <em:updates RDF:resource="rdf:#$SoyvE1"/>
+  </RDF:Description>
   <RDF:Seq RDF:about="rdf:#$SoyvE1">
     <RDF:li RDF:resource="rdf:#$ToyvE1"/>
   </RDF:Seq>
-  <RDF:Description RDF:about="urn:mozilla:extension:polopoly@quickpolopoly.edit"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAJeeMF6S4/n6E+UXuz0b91I4dWuQk3LDodWJWcoHdoOiahluY9NSc7Nxmn+xCu6ZLJeolx7R0pufKoQXPRMcSuI6nXvO/ZOD8kLL64S/KOM/EGEY/RNtZcQqUlIRYdtnerxO85QZYmAMwSYrJ73sUOiOGvb61WroZVeBFUNr1tgW">
-    <em:updates RDF:resource="rdf:#$SoyvE1"/>
-  </RDF:Description>
 </RDF:RDF>

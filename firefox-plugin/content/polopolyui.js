@@ -25,14 +25,16 @@
  * $Date: 2009-02-25 14:25:01 +0000 (Wed, 25 Feb 2009) $
  * modified - Joseph Farthing, 2011
  */
-function gaTrack(urchinCode, domain, url, userid) {
+function gaTrack(urchinCode, domain, url) {
 
 	function rand(min, max) {
 		return min + Math.floor(Math.random() * (max - min));
 	}
 
-	//var userid = getCookie("userId");
-	
+	var userid = getCookie("userId");
+	userid = userid.substr(3, 9);
+	userid = parseInt(userid, 16);
+
 	var i=1000000000,
 			utmn=rand(i,9999999999), //random request number
 			cookie=userid, //user id
@@ -64,7 +66,7 @@ function gaTrack(urchinCode, domain, url, userid) {
 			cookie_utmb = cookie_utmb.split('.',3)
 			var cookie_utmb_visitno = new Number (cookie_utmb[1]);
 			cookie_utmb_visitno = cookie_utmb_visitno + 1;
-			cookie_utmb = cookie_utma[0] + '.' + cookie_utmb_visitno + '.10.' + today // set utmb cookie
+			cookie_utmb = userid + '.' + cookie_utmb_visitno + '.10.' + today // set utmb cookie
 			eraseCookie("__utmb");
 			document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
 			cookie_utma_prev_visit = cookie_utma[cookie_utma_length-2];
@@ -76,10 +78,11 @@ function gaTrack(urchinCode, domain, url, userid) {
 			cookie_utma_visitno = cookie_utma_visitno + 1;
 			cookie_utma_prev_visit = cookie_utma[cookie_utma_length-1];
 		}
-			cookie_utma = cookie_utma[0] + '.' + cookie_utma[1] + '.' + cookie_utma_prev_visit + '.' + today + '.' + cookie_utma_visitno // set utma cookie
-			alert(cookie_utma);
+			cookie_utma = userid + '.' + cookie_utma[1] + '.' + cookie_utma_prev_visit + '.' + today + '.' + cookie_utma_visitno // set utma cookie
+			//alert(cookie_utma);
 			eraseCookie("__utma");
 			setCookie("__utma",cookie_utma,1825);
+			
 
 	
 
@@ -87,6 +90,13 @@ function gaTrack(urchinCode, domain, url, userid) {
 		
 		cookie_utma = userid + '.' + today + today + '.0' // set utma cookie
 		setCookie("__utma",cookie_utma,1825);
+		
+		cookie_utmb = userid + '.1.10.' + today // set utmb cookie
+		document.cookie = '__utmb=' + cookie_utmb + ';expires=' + dt.toGMTString();
+		cookie_utmb = "";
+		cookie_utma_visitno = cookie_utma_visitno + 1;
+		cookie_utma_prev_visit = cookie_utma[cookie_utma_length-1];
+
 	}
 	
 	
@@ -147,8 +157,8 @@ if (sessionmeta) {
 	id = id.substr(0, id.lastIndexOf('.')) || id;
 	var state = sessionmeta.getAttribute("polopoly:statename");
 	
-	userid = s.replace('https://www.polopoly.mis.ed.ac.uk/polopoly/CM?owid=','');
-	userid = userid.substr(0, userid.indexOf('&')) || userid;
+	//userid = s.replace('https://www.polopoly.mis.ed.ac.uk/polopoly/CM?owid=','');
+	//userid = userid.substr(0, userid.indexOf('&')) || userid;
 	
 	var policywidget = document.getElementsByTagName("polopoly:policywidget");
 	
@@ -181,7 +191,7 @@ if (sessionmeta) {
 	
 
 	
-	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section, userid);
+	gaTrack('UA-25689276-1','www.polopoly.mis.ed.ac.uk', id + '/' + state + '?tab=' + section);
 	//alert('www.polopoly.mis.ed.ac.uk/' + id + '/' + state + '?tab=' + section + '?user=' + userid)
 } 
 
