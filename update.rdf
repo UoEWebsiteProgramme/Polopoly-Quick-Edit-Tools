@@ -2,21 +2,21 @@
 <RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
          xmlns:NC="http://home.netscape.com/NC-rdf#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Seq RDF:about="rdf:#$SoyvE1">
+    <RDF:li RDF:resource="rdf:#$ToyvE1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$WoyvE1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="1.5"
+                   em:maxVersion="11.*"
+                   em:updateLink="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/raw/master/firefox-plugin/Polopoly%20Quick%20Edit-1.4.2.xpi"
+                   em:updateInfoURL="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/commits/master" />
   <RDF:Description RDF:about="rdf:#$ToyvE1"
                    em:version="1.4.2">
     <em:targetApplication RDF:resource="rdf:#$WoyvE1"/>
   </RDF:Description>
-  <RDF:Description RDF:about="rdf:#$WoyvE1"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="8.*"
-                   em:updateLink="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/raw/master/firefox-plugin/Polopoly%20Quick%20Edit-1.4.2.xpi"
-                   em:updateInfoURL="https://github.com/UoEWebsiteProgramme/Polopoly-Quick-Edit-Tools/commits/master" />
   <RDF:Description RDF:about="urn:mozilla:extension:polopoly@quickpolopoly.edit"
-                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAEh8bGCe0dFm5nMY3rveuIf2qZP3UTi3Ger9QDJFfv/7SrOFUp8jnOv9mFj4IAClL0frbDj4XKUNamlHXJrGJ9ROSgd1L6XpxO2d3QzCncjCZxjaMPOjqds1Jv9kgG4PO3J2vCjwZSIU4Q2f6LhcwVG+WFNUkVRWls2Oa3SkSEY7">
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBADBV9ktrdcM9dp61WZut+mQFzkqx3ZRTuX1SbG6Wr5uNeaulEEAqn+SSenrFALCCmNzPruxSYJ3EKGc8JrMHJML8bRaNB2CjdBjnAIq+2oat6GqlKv4OEJQNQAufjpsGY6elcTN08jyAIEsl5UhmlMjzThgOfdPinlj2nB4mEXw5">
     <em:updates RDF:resource="rdf:#$SoyvE1"/>
   </RDF:Description>
-  <RDF:Seq RDF:about="rdf:#$SoyvE1">
-    <RDF:li RDF:resource="rdf:#$ToyvE1"/>
-  </RDF:Seq>
 </RDF:RDF>
